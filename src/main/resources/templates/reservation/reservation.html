@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약하기</title>
+    <link rel="stylesheet" href="../../../../front.css">
+</head>
+<body>
+<div class="reservation-container">
+    <h1>예약하기</h1>
+    <div class="store-info">
+        <h2>가게 정보</h2>
+        <p id="store-name"></p>
+        <p id="store-address"></p>
+    </div>
+    <div class="reservation-form">
+        <label for="reservation-date">날짜:</label>
+        <input type="datetime-local" id="reservation-date">
+        <label for="reservation-people">인원:</label>
+        <input type="number" id="reservation-people" min="1">
+        <label for="seat-type">좌석 타입:</label>
+        <select id="seat-type"></select>
+        <button onclick="makeReservation()">예약하기</button>
+    </div>
+</div>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>

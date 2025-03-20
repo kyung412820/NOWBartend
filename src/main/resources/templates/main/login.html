@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 및 로그인</title>
+    <link rel="stylesheet" href="/css/front.css">
+</head>
+<body>
+<div class="container">
+    <div id="login-form">
+        <h2>로그인</h2>
+        <input type="text" id="login-email" placeholder="이메일">
+        <input type="password" id="login-password" placeholder="비밀번호">
+        <button onclick="login()">로그인</button>
+        <p>계정이 없으신가요? <a href="#" onclick="showSignupForm()">회원가입</a></p>
+        <button onclick="kakaoLogin()">카카오 로그인</button>
+    </div>
+
+    <div id="signup-form" style="display:none;">
+        <h2>회원가입</h2>
+        <input type="text" id="signup-email" placeholder="이메일">
+        <input type="password" id="signup-password" placeholder="비밀번호">
+        <input type="text" id="signup-name" placeholder="이름">
+        <input type="text" id="signup-nickname" placeholder="닉네임">
+        <input type="text" id="signup-phone" placeholder="전화번호">
+        <select id="signup-role">
+            <option value="CUSTOMER">고객</option>
+            <option value="SELLER">사장님</option>
+        </select>
+        <button onclick="signup()">회원가입</button>
+        <p>이미 계정이 있으신가요? <a href="#" onclick="showLoginForm()">로그인</a></p>
+    </div>
+
+    <div id="social-signup-form" style="display: none;">
+        <h2>소셜 회원가입 추가 정보 입력</h2>
+        <input type="text" id="social-phone" placeholder="휴대폰 번호">
+        <input type="text" id="social-verification-code" placeholder="인증 번호">
+        <button onclick="submitSocialSignup()">다음</button>
+    </div>
+</div>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="/js/main/login.js"></script>
+</body>
+</html>

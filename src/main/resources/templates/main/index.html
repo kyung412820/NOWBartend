@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 페이지</title>
+    <link rel="stylesheet" href="/css/front.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+<div class="main-container">
+    <h1>메인 페이지</h1>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="맛집 검색">
+        <!-- 새로운 거리 선택 영역 -->
+        <div id="distance-container" class="distance-container" style="display: none;">
+            <p>주변 <span id="distance-display">3000km</span></p> <!-- 텍스트 형식으로 1자만 표시 -->
+            <input type="range" id="distance" min="0" max="5" step="1" value="5"> <!-- 100, 200, 500, 1000, 2000, 3000으로만 선택 가능 -->
+        </div>
+        <div class="filter-container">
+            <button id="sort-btn" onclick="openSortModal()">정렬</button>
+            <button id="filter-btn" onclick="openFilterModal()">필터</button>
+            <button id="nearby-btn">내 주변</button>
+        </div>
+        <button onclick="searchStores()">검색</button>
+    </div>
+
+    <!-- 정렬 모달 -->
+    <div id="sort-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSortModal()">&times;</span>
+            <h3>정렬 기준</h3>
+            <div class="sort-option selected" data-sort="popularity">
+                <span>✔</span> <span>인기순</span>
+            </div>
+            <div class="sort-option" data-sort="nearby">
+                <span>✔</span> <span>거리순</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 필터 모달 -->
+    <div id="filter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFilterModal()">&times;</span>
+            <h3>필터 선택</h3>
+
+            <!-- 주소 필터 -->
+            <input type="text" id="address" placeholder="주소 입력">
+
+            <!-- 가격 필터 -->
+            <div id="slider-container">
+                <input type="range" id="min-price" min="0" max="400000" step="10000" value="0" oninput="updatePriceDisplay()">
+                <input type="range" id="max-price" min="0" max="400000" step="10000" value="400000" oninput="updatePriceDisplay()">
+            </div>
+            <div><span id="min-price-display">0</span>원 ~ <span id="max-price-display">400000</span>원
+            </div>
+
+            <!-- 좌석 유형 필터 -->
+            <select id="seat-type">
+                <option value="">선택</option>
+                <option value="1">홀</option>
+                <option value="2">바</option>
+                <option value="3">테라스</option>
+                <option value="4">룸</option>
+            </select>
+
+            <button onclick="applyFilters()">적용</button>
+        </div>
+    </div>
+
+    <div class="store-list" id="store-list">
+        <!-- 가게 목록이 여기에 동적으로 추가됩니다. -->
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="/collection">컬렉션</a>
+        <a href="/">홈</a>
+        <a href="/user/history">내역</a>
+        <a href="/post">게시글</a>
+    </nav>
+</div>
+
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="/js/main/index.js"></script>
+</body>
+</html>

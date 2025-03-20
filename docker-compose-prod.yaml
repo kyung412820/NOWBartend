@@ -1,0 +1,43 @@
+services:
+  app:
+    image: ${DOCKER_HUB_USERNAME}/oishitable:latest
+    container_name: oishitable-app
+    restart: always
+    environment:
+      DEBUG: true
+      SPRING_DATASOURCE_URL: jdbc:mysql://${RDS_ENDPOINT}:3306/oishitable
+      SPRING_DATASOURCE_USERNAME: ${RDS_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${RDS_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATA_REDIS_HOST: ${REDIS_HOST}
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_RABBITMQ_HOST: ${RABBITMQ_HOST}
+      SPRING_RABBITMQ_PORT: 5671
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      SPRING_RABBITMQ_VIRTUAL_HOST: /
+      SPRING_RABBITMQ_SSL_ENABLED: "true"
+      SPRING_ELASTICSEARCH_URIS: ${ES_URIS}
+      SPRING_ELASTICSEARCH_USERNAME: ${ES_USERNAME}
+      SPRING_ELASTICSEARCH_PASSWORD: ${ES_PASSWORD}
+      SPRING_JWT_SECRET_ACCESS: ${JWT_SECRET_ACCESS}
+      SPRING_JWT_SECRET_REFRESH: ${JWT_SECRET_REFRESH}
+      SPRING_MAIL_HOST: smtp.gmail.com
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_USERNAME: ${MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD}
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
+      KAKAO_AUTH_CLIENT: ${KAKAO_AUTH_CLIENT}
+      KAKAO_AUTH_REDIRECT: https://oishitable.link/api/auth/kakao/callback
+      KAKAO_API_KEY: ${KAKAO_API_KEY}
+    ports:
+      - "8080:8080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  mysql-data:

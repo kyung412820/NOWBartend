@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웨이팅</title>
+    <link rel="stylesheet" href="../../../../front.css">
+</head>
+<body>
+<div class="waiting-container">
+    <h1>웨이팅</h1>
+    <div class="waiting-info">
+        <p>현재 순번: <span id="current-waiting-number"></span></p>
+        <p>총 인원: <span id="total-waiting-people"></span>명</p>
+        <button onclick="refreshWaiting()">새로고침</button>
+    </div>
+    <div class="waiting-form">
+        <label for="waiting-people">인원:</label>
+        <input type="number" id="waiting-people" min="1">
+        <label for="waiting-type">웨이팅 타입:</label>
+        <select id="waiting-type">
+            <option value="IN">매장</option>
+            <option value="OUT">포장</option>
+        </select>
+        <button onclick="joinWaiting()">웨이팅 등록</button>
+    </div>
+    <button onclick="cancelWaiting()">웨이팅 취소</button>
+</div>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>
